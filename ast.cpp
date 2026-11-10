@@ -66,6 +66,16 @@ Function::~Function()
         delete statement;
 }
 
+Return::Return(Node* expr) : expr(expr) 
+{
+
+}
+
+Return::~Return()
+{
+    delete expr;
+}
+
 
 string Constant::build(Builder& builder, TrackSymbol& tracker)
 {
@@ -134,8 +144,14 @@ string Function::build(Builder& builder, TrackSymbol& tracker)
     for (auto& statement : block)
         statement->build(builder, tracker);
 
-    builder.emit("ret 0");
-
     tracker.exit_scope();
+    return "";
+}
+
+string Return::build(Builder& builder, TrackSymbol& tracker)
+{
+    string expr_val = expr->build(builder, tracker);
+    string instr = "ret " + expr_val;
+    builder.emit(instr);
     return "";
 }

@@ -100,3 +100,14 @@ public:
 
     ~Function();
 };
+
+class Return : public Node
+{
+public:
+    Node* expr;
+    Return(Node* expr);
+
+    string build(Builder& builder, TrackSymbol& tracker) override;
+
+    ~Return();
+};

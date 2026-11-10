@@ -24,6 +24,7 @@ public:
     Node* term();
     Node* expression();
 
+    Node* ret();
     Node* assign();
     Node* declare();
     

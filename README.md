@@ -2,4 +2,4 @@
 ### Usage
 Edit `code.bin`
 
-Run `D:\compiler>main.exe`
+Run `D:\compiler>run`

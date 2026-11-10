@@ -1,0 +1,59 @@
+
+
+
+
+int main() {}
+
+NODE {
+    node_type = FUNCTION;
+    body* = NODE;
+}
+
+
+********************************************************************************
+
+
+
+
+for (int i = 0; i < 5; i++)
+
+NODE {
+    node_type = FOR;
+    index = 0;
+    condition = L5;
+    increment = index++;
+    body* = NODE;
+}
+
+i <  5 -> L5  -> jge
+i <= 5 -> LE5 -> jg
+i != 5 -> NE5 -> je
+i == 5 -> E5  -> jne
+i >  5 -> G5  -> jle
+i >= 5 -> GE5 -> jl
+
+****************************************************************
+
+
+
+int x = 5;
+int y = x + 10;
+
+NODE {
+    node_type = VAR;
+    varname = "x";
+    value = 5;
+} x;
+
+NODE {
+    node_type = BINARY_OP;
+    op = +;
+    left = x;
+    right = 10;
+} add;
+
+NODE {
+    node_type = VAR;
+    varname = "y";
+    value = add;
+}

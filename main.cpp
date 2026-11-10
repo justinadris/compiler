@@ -56,6 +56,26 @@
             Variable declaration nodes (type, name)
 */
 
+/*
+    IR code representation
+    add {
+        param a
+        param b
+        t0 = a + b
+        ret t0
+    }
+
+    main {
+        t0 = 4
+        t1 = 7
+        param t0
+        param t1
+        t2 = call add, 2
+        x = t2
+    }
+
+*/
+
 
 #include <fstream>
 #include <sstream>
@@ -125,10 +145,11 @@ int main()
 
     for (Node* statement : program)
         statement->build(builder, tracker);
-
+    
     for (IRFunction& fun : builder.functions)
     {
         cout << fun.name  << " {\n";
+
         for (string& instr : fun.instructions)
             cout << "    " << instr << '\n';
         

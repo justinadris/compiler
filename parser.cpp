@@ -98,6 +98,14 @@ Node* Parser::assign()
     return new Assignment(left, right);
 }
 
+Node* Parser::ret()
+{
+    advance();
+    Node* expr = expression();
+    consume(TokenType::SEMICOLON, "Expected ';' after statement");
+    return new Return(expr);
+}
+
 Node* Parser::declare()
 {
     advance();
@@ -163,6 +171,8 @@ vector<Node*> Parser::parseBlock()
             block.push_back(declare());
         else if (check(TokenType::IDENTIFIER))
             block.push_back(assign());
+        else if (check(TokenType::RET))
+            block.push_back(ret());
         else
         {
             cout << "Fatal error: unexpected token '" << peek().lexeme << "'\n";
